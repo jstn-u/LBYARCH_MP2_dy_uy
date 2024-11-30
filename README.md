@@ -3,13 +3,20 @@ I. Execution Time and Short Analysis of the Performance
         The following execution times are the average of thirty (30) runs of the same inputs for different widths and heights.
             1. 10 x 10 (input: 1)        ->   2 ms
               ![image](https://github.com/user-attachments/assets/fe1d0a9a-1905-4d88-8c6c-579a2dcb2671)
-            2. 100 x 100 (input: 0.1)    ->   284 ms
+            2. 20 x 20 (input: 1)        ->   9 ms
+              ![image](https://github.com/user-attachments/assets/74fa071e-7bb1-44e4-9d54-677188f6f332)
+            3. 40 x 40 (input: 1)        ->   39 ms
+              ![image](https://github.com/user-attachments/assets/69da7005-d601-433c-bb38-fcae1b0082f3)
+            4. 100 x 100 (input: 0.1)    ->   284 ms
               ![image](https://github.com/user-attachments/assets/3b2953b3-9a03-48e4-9031-da4fc8a59d64)
-            3. 1000 x 1000               ->   Computer Terminal stopped responding.
-            4. 300 x 300 (input: 0.1)    ->   Computer Terminal stopped responding.
-            5. 200 x 200 (input: 0.1)    ->   1455 ms
+            5. 1000 x 1000               ->   Computer Terminal stopped responding.
+            6. 300 x 300 (input: 0.1)    ->   Computer Terminal stopped responding.
+            7. 200 x 200 (input: 0.1)    ->   1455 ms
               ![image](https://github.com/user-attachments/assets/a1b11ffa-b134-44ef-ac28-8a4a47ddf5a6)
     b. Short Analysis
+        Based on the data on the execution times, by graphing the increase of times as the height and width increases, we can observe a non-linear or an exponential slope. With that, we can conclude that the matrix's time increases exponentially. 
+        ![00d7f5c7-477a-4201-bb11-50c094cd9cc7](https://github.com/user-attachments/assets/57008345-ce08-4d68-b2d6-5dbf8f64d3e2)
+
       
 II. The screenshot(s) of the program output(s) with the correctness check
         Calculation: (f/i) = (1/255) or floating point x 255
