@@ -1,18 +1,24 @@
 section .data
-msg db "Hello World",13,10,0
-msg1 db "try", 13, 10, 0
-msg2 db "try2", 13, 10, 0
+    format db "Height: %d, Width: %d", 10, 0
+    float_255 dd 255.0    
 
 section .text
-bits 64
-default rel 
+    bits 64
+    default rel
+    global imgCvtGrayFloatToInt  
+    extern printf
 
-global asmhello
-extern printf
+imgCvtGrayFloatToInt:
 
-asmhello:
-	sub rsp, 8*5 
-	lea rcx, [msg1]
-	call printf
-	add rsp, 8*5
-	ret
+    ; Save registers that will be used
+    push rdi            ; Save height (rdi)
+    push rsi            ; Save width (rsi)
+    push rdx            ; Save input (rdx)
+    push rcx            ; Save output (rcx)
+
+    ; Print format with height and width
+    mov rdi, format
+    mov rsi, [rsp + 32]  
+    mov rdx, [rsp + 40]  
+    call printf      
+

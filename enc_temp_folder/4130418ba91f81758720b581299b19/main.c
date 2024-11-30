@@ -28,13 +28,13 @@ int main() {
     }
 
     // Output Integer
-    //printf("Output Image as Integer values:\n");
-    //for (int i = 0; i < height; i++) {
-        //for (int j = 0; j < width; j++) {
-            //printf("%d ", (int)output[i * width + j]);
-        //}
-        //printf("\n");
-    //}
+    printf("Output Image as Integer values:\n");
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            printf("%d ", (int)output[i * width + j]);
+        }
+        printf("\n");
+    }
 
     imgCvtGrayFloatToInt(height, width, input, output);
 
