@@ -28,14 +28,24 @@ int main() {
         scanf_s("%f", &input[i]);
     }
 
+
+    // Display the input image for checking
+    printf("Here are your inputted float values:\n");
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            printf("%.2f ", input[i * width + j]);
+        }
+        printf("\n");
+    }
+
     // Output Integer
-    //printf("Output Image as Integer values:\n");
-    //for (int i = 0; i < height; i++) {
-        //for (int j = 0; j < width; j++) {
-            //printf("%d ", (int)output[i * width + j]);
-        //}
-        //printf("\n");
-    //}
+    /*printf("Output Image as Integer values:\n");
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            printf("%d ", (int)output[i * width + j]);
+        }
+        printf("\n");
+    }*/
 
     imgCvtGrayFloatToInt(height, width, input, output);
 

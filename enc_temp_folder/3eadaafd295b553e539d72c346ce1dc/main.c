@@ -8,6 +8,7 @@ int main() {
     int width, height;
 
     // Input height and width
+    //
     printf("Input 2 integers for the height & width with a space in between the two (Example: 3 4): ");
     scanf_s("%d %d", &height, &width);
 
@@ -27,14 +28,24 @@ int main() {
         scanf_s("%f", &input[i]);
     }
 
+
+    // Display the input image for checking
+    printf("Input Image (Float values):\n");
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            printf("%.2f ", input[i * width + j]);
+        }
+        printf("\n");
+    }
+
     // Output Integer
-    printf("Output Image as Integer values:\n");
+    /*printf("Output Image as Integer values:\n");
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             printf("%d ", (int)output[i * width + j]);
         }
         printf("\n");
-    }
+    }*/
 
     imgCvtGrayFloatToInt(height, width, input, output);
 
