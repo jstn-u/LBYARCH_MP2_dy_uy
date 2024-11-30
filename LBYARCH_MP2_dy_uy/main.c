@@ -2,24 +2,23 @@
 #include <stdlib.h>
 #include <windows.h>
 
-void imgCvtGrayFloatToInt(int height, int width, float* input, int* output);
+extern void imgCvtGrayFloatToInt(int height, int width, float* input);
 
 int main() {
     int width, height;
 
     // Input height and width
-    //
     printf("Input 2 integers for the height & width with a space in between the two (Example: 3 4): ");
     scanf_s("%d %d", &height, &width);
 
-    // Allocate memory for the input and output arrays
+    // Allocate memory for the input array
     float* input = (float*)malloc(height * width * sizeof(float));
     int* output = (int*)malloc(height * width * sizeof(int));
 
     // Check if memory allocation was successful
-    if (input == NULL || output == NULL) {
+    if (input == NULL) {
         printf("Memory allocation failed.\n");
-        return 1;  // Exit the program if memory allocation fails
+        return 1; // Exit the program if memory allocation fails
     }
 
     // Input Float
@@ -28,9 +27,11 @@ int main() {
         scanf_s("%f", &input[i]);
     }
 
+    // Call assembly function to process the input array
+    imgCvtGrayFloatToInt(height, width, input);
 
-    // Display the input image for checking
-    printf("Here are your inputted float values:\n");
+    // Display the modified input array
+    printf("Image (Float * 255) =\n");
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             printf("%.2f ", input[i * width + j]);
@@ -38,20 +39,9 @@ int main() {
         printf("\n");
     }
 
-    // Output Integer
-    /*printf("Output Image as Integer values:\n");
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            printf("%d ", (int)output[i * width + j]);
-        }
-        printf("\n");
-    }*/
-
-    imgCvtGrayFloatToInt(height, width, input, output);
-
     // Free allocated memory
     free(input);
-    free(output);
+    //free(output);
 
     return 0;
 }
