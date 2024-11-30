@@ -8,6 +8,7 @@ int main() {
     int width, height;
 
     // Input height and width
+    //
     printf("Input 2 integers for the height & width with a space in between the two (Example: 3 4): ");
     scanf_s("%d %d", &height, &width);
 
