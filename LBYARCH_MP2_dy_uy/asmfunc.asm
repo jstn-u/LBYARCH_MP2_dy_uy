@@ -1,5 +1,5 @@
 section .data
-    float_255 dd 255.0                       ; Constant for multiplication
+    f255 dd 255.0                       
 
 section .text
     bits 64
@@ -7,44 +7,37 @@ section .text
     global imgCvtGrayFloatToInt
 
 imgCvtGrayFloatToInt:
-    ; Save registers that will be used
-    push rcx            ; Save height (rdi)
-    push rdx            ; Save width (rsi)
-    push r8            ; Save input (rdx)
+    push rcx            ;height
+    push rdx            ;width
+    push r8             ;input
+    push r9             ;output
 
-    ; Function arguments
-    mov r10, rcx                      ; r8d = height
-    mov r11, rdx                      ; r9d = width
-    mov r12, r8                      ; r10 = input (float pointer)
+    mov r10, rcx                      ;r10 = height
+    mov r11, rdx                      ;r11 = width
+    mov r12, r8                       ;r12 = input
+    mov r13, r9                       ;r13 = output
 
-    ; Calculate total pixels = height * width
-    imul r10, r11                     ; r8d = height * width (total pixels)
+    imul r10, r11                     ; r10 = height * width (total pixels)
+    xor r14, r14                      
 
-    ; Initialize index counter
-    xor r9, r9                      ; ecx = 0 (pixel index)
+convert:
+    cmp r14, r10                      
+    jge done                          
 
-convert_loop:
-    cmp r9, r10                      ; Compare index with total pixels
-    jge done                          ; If index >= total pixels, exit loop
+    movss xmm0, dword [r12 + r14 * 4] ;get input
 
-    ; Load float value from input array
-    movss xmm0, dword [r12 + r9 * 4] ; xmm0 = input[ecx] (scalar float)
+    mulss xmm0, dword [f255] ; xmm0 *= 255.0 ;convert input
 
-    ; Multiply by 255.0
-    mulss xmm0, dword [float_255] ; xmm0 *= 255.0
+    cvtss2si rax, xmm0      ;float to int
 
-    cvtss2si rax, xmm0
+    mov [r13 + r14 * 4], rax    ;int to output
 
-    ;movss dword [r12 + r9 * 4], rax
-    movss dword [r12 + r9 * 4], xmm0
-
-    ; Increment index
-    inc r9
-    jmp convert_loop                  ; Repeat loop for next pixel
+    inc r14
+    jmp convert                  
 
 done:
-    ; Restore registers
     pop r8
+    pop r9
     pop rdx
     pop rcx
 
